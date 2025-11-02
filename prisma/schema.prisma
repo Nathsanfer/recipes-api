@@ -13,30 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model PontoTuristico {
-  id        Int    @id @default(autoincrement())
-  nome      String
-  descricao String
-  regiao    Regiao
-  cidade    String
-  estado    String
-  imagemUrl String
-  nota      Float  @default(0)
-
-  dataCriacao     DateTime @default(now())
-  dataAtualizacao DateTime @updatedAt
-
-  @@map("pontos_turisticos")
-}
-
-enum Regiao {
-  Norte
-  Nordeste
-  CentroOeste
-  Sudeste
-  Sul
-}
-
 model Recipe {
   id           Int    @id @default(autoincrement())
   name         String
