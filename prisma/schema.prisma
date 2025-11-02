@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model PontoTuristico {
+  id        Int    @id @default(autoincrement())
+  nome      String
+  descricao String
+  regiao    Regiao
+  cidade    String
+  estado    String
+  imagemUrl String
+  nota      Float  @default(0)
+
+  dataCriacao     DateTime @default(now())
+  dataAtualizacao DateTime @updatedAt
+
+  @@map("pontos_turisticos")
+}
+
+enum Regiao {
+  Norte
+  Nordeste
+  CentroOeste
+  Sudeste
+  Sul
+}
