@@ -5,7 +5,12 @@ class RecipeController {
   async getAll(req, res) {
     try {
       const recipes = await RecipeModel.findAll();
-      res.json(recipes);
+      const total = recipes.length;
+      
+      res.json({
+        message: `Total de ${total} receita${total !== 1 ? 's' : ''} encontrada${total !== 1 ? 's' : ''}`,
+        recipes: recipes
+      });
     } catch (error) {
       console.error("Erro ao buscar receitas:", error);
       res.status(500).json({ error: "Erro ao buscar receitas" });
